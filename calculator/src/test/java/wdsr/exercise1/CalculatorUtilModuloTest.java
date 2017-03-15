@@ -5,6 +5,10 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import static org.junit.Assert.assertEquals;
+
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.eq;
 
 import wdsr.exercise1.logic.Calculator;
 
@@ -18,13 +22,20 @@ public class CalculatorUtilModuloTest {
 		calcUtil = new CalculatorUtil(calculator);
 	}
 
-	@Test
+	@Test(expected=ArithmeticException.class)
 	public void testModuloByZero() {
-		fail("Not yet implemented");
+		
+		Mockito.doThrow( new ArithmeticException()).when(calculator).modulo(anyInt(),eq(0));
+		
+		calcUtil.getModuloText(anyInt(),eq(0));
 	}
 
 	@Test
 	public void testModulo16By4() {
-		fail("Not yet implemented");
+		
+		Mockito.doReturn(0).when(calculator).modulo(16,4);
+		
+		assertEquals("16 % 4 = 0", calcUtil.getModuloText(16,4));
+		
 	}
 }

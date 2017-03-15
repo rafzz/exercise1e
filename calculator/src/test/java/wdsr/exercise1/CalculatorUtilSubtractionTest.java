@@ -22,7 +22,9 @@ public class CalculatorUtilSubtractionTest {
 
 	@Test
 	public void test3minus1() {
-		fail("Not yet implemented");
+		when(calculator.subtract(3,1)).thenReturn(2);
+		
+		assertEquals("3 - 1 = 2",calcUtil.getSubstractionText(3,1));
 	}
 
 	@Test
@@ -34,6 +36,6 @@ public class CalculatorUtilSubtractionTest {
 		String actual = calcUtil.getSubstractionText(-3, -1);
 
 		// then
-		assertEquals("(-3) - (-1) = (-2)", actual);
+		assertEquals("-3 - -1 = -2", actual);
 	}
 }
